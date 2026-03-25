@@ -9,15 +9,14 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/alexs/subscription-service/internal/model"
-	"github.com/alexs/subscription-service/internal/repository"
 )
 
 type SubscriptionService struct {
-	repo   *repository.SubscriptionRepository
+	repo   SubscriptionRepo
 	logger *slog.Logger
 }
 
-func NewSubscriptionService(repo *repository.SubscriptionRepository, logger *slog.Logger) *SubscriptionService {
+func NewSubscriptionService(repo SubscriptionRepo, logger *slog.Logger) *SubscriptionService {
 	return &SubscriptionService{
 		repo:   repo,
 		logger: logger,
@@ -162,7 +161,7 @@ func (s *SubscriptionService) List(ctx context.Context, userID, serviceName *str
 		slog.Int("offset", offset),
 	)
 
-	filter := repository.ListFilter{
+	filter := model.ListFilter{
 		Limit:  limit,
 		Offset: offset,
 	}

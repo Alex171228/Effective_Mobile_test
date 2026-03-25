@@ -62,6 +62,13 @@ type ErrorResponse struct {
 	Error string `json:"error" example:"something went wrong"`
 }
 
+type ListFilter struct {
+	UserID      *uuid.UUID
+	ServiceName *string
+	Limit       int
+	Offset      int
+}
+
 // --- Converters ---
 
 func ToSubscriptionResponse(s Subscription) SubscriptionResponse {

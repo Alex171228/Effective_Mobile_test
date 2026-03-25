@@ -103,14 +103,7 @@ func (r *SubscriptionRepository) Delete(ctx context.Context, id uuid.UUID) error
 	return nil
 }
 
-type ListFilter struct {
-	UserID      *uuid.UUID
-	ServiceName *string
-	Limit       int
-	Offset      int
-}
-
-func (r *SubscriptionRepository) List(ctx context.Context, f ListFilter) ([]model.Subscription, int64, error) {
+func (r *SubscriptionRepository) List(ctx context.Context, f model.ListFilter) ([]model.Subscription, int64, error) {
 	var (
 		conditions []string
 		args       []any

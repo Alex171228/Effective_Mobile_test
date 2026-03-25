@@ -10,15 +10,14 @@ import (
 	"github.com/go-chi/chi/v5"
 
 	"github.com/alexs/subscription-service/internal/model"
-	"github.com/alexs/subscription-service/internal/service"
 )
 
 type SubscriptionHandler struct {
-	service *service.SubscriptionService
+	service SubscriptionSvc
 	logger  *slog.Logger
 }
 
-func NewSubscriptionHandler(svc *service.SubscriptionService, logger *slog.Logger) *SubscriptionHandler {
+func NewSubscriptionHandler(svc SubscriptionSvc, logger *slog.Logger) *SubscriptionHandler {
 	return &SubscriptionHandler{
 		service: svc,
 		logger:  logger,
